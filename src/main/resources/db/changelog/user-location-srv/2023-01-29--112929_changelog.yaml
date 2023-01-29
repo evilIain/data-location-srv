@@ -1,0 +1,30 @@
+databaseChangeLog:
+- changeSet:
+    id: 1674991783551-3
+    author: yabezzu4 (generated)
+    changes:
+    - addColumn:
+        columns:
+        - column:
+            name: created_when
+            type: timestamp
+        tableName: location
+- changeSet:
+    id: 1674991783551-1
+    author: yabezzu4 (generated)
+    changes:
+    - addNotNullConstraint:
+        columnDataType: float8
+        columnName: latitude
+        tableName: location
+        validate: true
+- changeSet:
+    id: 1674991783551-2
+    author: yabezzu4 (generated)
+    changes:
+    - addNotNullConstraint:
+        columnDataType: float8
+        columnName: longitude
+        tableName: location
+        validate: true
+

@@ -3,11 +3,11 @@ package org.example.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.Application;
 import org.example.BaseIntegrationTest;
+import org.example.controller.db.TestUserRepository;
 import org.example.converter.UserMapper;
 import org.example.entity.LocationEntity;
 import org.example.entity.UserEntity;
 import org.example.repository.LocationRepository;
-import org.example.repository.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public abstract class BaseUserDataControllerTest extends BaseIntegrationTest {
     protected TestRestTemplate testRestTemplate;
 
     @Autowired
-    protected UserRepository userRepository;
+    protected TestUserRepository userRepository;
 
     @Autowired
     protected LocationRepository locationRepository;
@@ -37,7 +37,10 @@ public abstract class BaseUserDataControllerTest extends BaseIntegrationTest {
     protected UserMapper userMapper;
 
     protected UserEntity userEntity;
+
+    protected UserEntity userWithoutLocationEntity;
     protected LocationEntity locationEntity;
+    protected LocationEntity anotherLocationEntity;
 
     @BeforeEach
     public void init() {
@@ -48,11 +51,26 @@ public abstract class BaseUserDataControllerTest extends BaseIntegrationTest {
                 .build();
         userRepository.save(userEntity);
 
+        userWithoutLocationEntity = UserEntity.builder()
+                .email("peterparker@gmail.com")
+                .firstName("Peter")
+                .secondName("Parker")
+                .build();
+        userRepository.save(userWithoutLocationEntity);
+
         locationEntity = LocationEntity.builder()
                 .latitude(52.25374589345)
                 .longitude(10.34653242346)
                 .user(userEntity)
                 .build();
+
+        anotherLocationEntity = LocationEntity.builder()
+                .latitude(87.25374589345)
+                .longitude(45.34653242346)
+                .user(userEntity)
+                .build();
+
+        locationRepository.save(anotherLocationEntity);
         locationRepository.save(locationEntity);
     }
 
