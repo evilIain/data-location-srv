@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.converter.UserMapper;
 import org.example.dto.in.CreateUserRequest;
+import org.example.dto.in.UpdateUserRequest;
 import org.example.dto.out.CreateUserResponse;
+import org.example.dto.out.UpdateUserResponse;
 import org.example.entity.UserEntity;
 import org.example.service.UserDataProcessingService;
 import org.example.service.db.UserService;
@@ -25,5 +27,15 @@ public class UserDataProcessingServiceImpl implements UserDataProcessingService 
         final UserEntity dbUserEntity = userService.create(userEntity);
 
         return userMapper.toCreateUserResponse(dbUserEntity);
+    }
+
+    @Override
+    public UpdateUserResponse updateUser(UpdateUserRequest request) {
+        UserEntity userEntity = userMapper.toUserEntity(request);
+        userService.findById(request.getUserId());
+
+        UserEntity dbUpdatedUserEntity = userService.updateUser(userEntity);
+
+        return userMapper.toUpdateUserResponse(dbUpdatedUserEntity);
     }
 }

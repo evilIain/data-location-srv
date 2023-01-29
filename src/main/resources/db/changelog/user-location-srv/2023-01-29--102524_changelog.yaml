@@ -1,0 +1,67 @@
+databaseChangeLog:
+- changeSet:
+    id: 1674987938162-1
+    author: yabezzu4 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: locationPK
+            name: id
+            type: UUID
+        - column:
+            name: latitude
+            type: FLOAT8
+        - column:
+            name: longitude
+            type: FLOAT8
+        - column:
+            name: user_id
+            type: UUID
+        tableName: location
+- changeSet:
+    id: 1674987938162-2
+    author: yabezzu4 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: user_infoPK
+            name: id
+            type: UUID
+        - column:
+            name: created_when
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: email
+            type: VARCHAR(255)
+        - column:
+            name: first_name
+            type: VARCHAR(255)
+        - column:
+            name: modified_when
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: second_name
+            type: VARCHAR(255)
+        tableName: user_info
+- changeSet:
+    id: 1674987938162-3
+    author: yabezzu4 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: location
+        constraintName: FKrp8qehhcyepgf336en8pr8p67
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user_info
+        validate: true
+
