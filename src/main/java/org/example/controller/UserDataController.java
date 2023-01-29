@@ -36,7 +36,7 @@ public class UserDataController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/location")
-    public RegisterLocationResponse registerLocation(@RequestBody RegisterLocationRequest registerLocationRequest) {
+    public RegisterLocationResponse registerLocation(@Valid @RequestBody RegisterLocationRequest registerLocationRequest) {
         return userDataProcessingService.registerLocation(registerLocationRequest);
     }
 

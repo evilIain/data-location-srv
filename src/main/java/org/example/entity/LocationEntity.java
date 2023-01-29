@@ -1,8 +1,10 @@
 package org.example.entity;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -32,7 +34,6 @@ public class LocationEntity {
     @Column(name = "longitude")
     private Double longitude;
 
-    @CreationTimestamp
     @Column(name = "created_when")
     private Instant createdWhen;
 
