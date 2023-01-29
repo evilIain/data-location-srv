@@ -34,6 +34,7 @@ public class LocationEntity {
     @Column(name = "longitude")
     private Double longitude;
 
+    @NotNull
     @Column(name = "created_when")
     private Instant createdWhen;
 

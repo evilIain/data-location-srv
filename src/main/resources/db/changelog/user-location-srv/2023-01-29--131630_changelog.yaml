@@ -1,0 +1,11 @@
+databaseChangeLog:
+- changeSet:
+    id: 1674998206765-1
+    author: yabezzu4 (generated)
+    changes:
+    - addNotNullConstraint:
+        columnDataType: timestamp
+        columnName: created_when
+        tableName: location
+        validate: true
+

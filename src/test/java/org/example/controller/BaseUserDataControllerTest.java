@@ -15,6 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.Instant;
+
 
 @ActiveProfiles(BaseIntegrationTest.TEST_PROFILE)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, classes = Application.class)
@@ -62,12 +64,14 @@ public abstract class BaseUserDataControllerTest extends BaseIntegrationTest {
                 .latitude(52.25374589345)
                 .longitude(10.34653242346)
                 .user(userEntity)
+                .createdWhen(Instant.now())
                 .build();
 
         anotherLocationEntity = LocationEntity.builder()
                 .latitude(87.25374589345)
                 .longitude(45.34653242346)
                 .user(userEntity)
+                .createdWhen(Instant.now())
                 .build();
 
         locationRepository.save(anotherLocationEntity);
