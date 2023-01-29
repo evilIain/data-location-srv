@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12.8-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user-location-srv
+      POSTGRES_PASSWORD: user-location-srv
+      POSTGRES_DB: user-location-srv
+    labels:
+      NAME: test-postgres-db

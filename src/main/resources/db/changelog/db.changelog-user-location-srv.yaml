@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - includeAll:
+      path: db/changelog/user-location-srv
+      relativeToChangelogFile: false
